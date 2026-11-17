@@ -52,6 +52,8 @@ void cargar_archivo(char *nombre_archivo, Producto *producto, int tam);
 int leer_productos(char *nombre_archivo, Producto **productos);
 void volver_menu(void);
 int buscar_producto_indice(Producto *productos, int tam, int codigo);
+int validar_int(int *valor);
+int validar_string(char *valor);
 
 int main(void) {
     /* Funcion principal */
@@ -71,7 +73,7 @@ void volver_menu(void) {
     char opcion;
     printf("\nVolver al menu? (s/n): ");
     while(getchar() != '\n');
-    scanf("%c", &opcion);
+    validar_string(&opcion);
     if (opcion == 's') {
         menu();
     }
@@ -87,7 +89,7 @@ void menu(void) {
         printf("3. Listar sin formatear\n");
         printf("4. Salir\n");
         printf("Ingrese una opcion: ");
-        scanf("%d", &opcion);
+        validar_int(&opcion);
         switch (opcion) {
             case 1:
                 opcion_valida = 1;
@@ -131,22 +133,22 @@ void cargar_producto(void) {
     cambio = 0;
 
     printf("Ingrese el codigo del producto: ");
-    scanf("%d", &actual.codigo);
+    validar_int(&actual.codigo);
     while (actual.codigo != 0) {
         /*Si el producto ya existe, se actualiza la
         cantidad y no pide la marca*/
         codigo_existente = buscar_producto_indice(productos, n, actual.codigo);
         if (codigo_existente != -1) {
             printf("Ingrese la cantidad del producto: ");
-            scanf("%d", &actual.cantidad);
+            validar_int(&actual.cantidad);
             productos[codigo_existente].cantidad += actual.cantidad;
             cambio = 1;
         }
         else{
             printf("Ingrese la marca del producto: ");
-            scanf("%s", actual.marca);
+            validar_string(actual.marca);
             printf("Ingrese la cantidad del producto: ");
-            scanf("%d", &actual.cantidad);
+            validar_int(&actual.cantidad);
             aux = (Producto *)realloc(productos, (n + 1) * sizeof(Producto));
             if (aux == NULL) {
                 printf("Error al asignar memoria\n");
@@ -162,7 +164,7 @@ void cargar_producto(void) {
         limpiar_pantalla();
 
         printf("Ingrese el codigo del producto: ");
-        scanf("%d", &actual.codigo);
+        validar_int(&actual.codigo);
     }
 
     if (cambio)
@@ -286,4 +288,20 @@ void cargar_archivo(char *nombre_archivo, Producto *producto, int tam) {
     }
     fwrite(producto, sizeof(Producto), tam, archivo);
     fclose(archivo);
+}
+
+int validar_int(int *valor) {
+    while (scanf("%d", valor) != 1) {
+        printf("Error: Ingrese un numero valido\n");
+        while (getchar() != '\n');
+    }
+    return 1;
+}
+
+int validar_string(char *valor) {
+    while (scanf("%s", valor) != 1) {
+        printf("Error: Ingrese un string valido\n");
+        while (getchar() != '\n');
+    }
+    return 1;
 }
