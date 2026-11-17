@@ -1,0 +1,14 @@
+Comiplar en Windows:
+gcc -ansi -pedantic -Wall -Wextra tp_v2.c -o tp_v2.exe
+
+Ejecutar en Windows:
+tp_v2.exe
+
+--------------------------------
+
+Comiplar en Linux:
+gcc -ansi -pedantic -Wall -Wextra tp_v2.c -o tp_v2
+
+Ejecutar en Linux:
+./tp_v2
+

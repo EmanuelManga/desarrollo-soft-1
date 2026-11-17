@@ -1,0 +1,13 @@
+CompileFlags:
+  Add:
+    - -ansi
+    - -pedantic-errors
+    - -Wall
+    - -Wextra
+  Remove:
+    - -std=*
+    - -std=c++*
+
+Diagnostics:
+  UnusedIncludes: None
+  MissingIncludes: None

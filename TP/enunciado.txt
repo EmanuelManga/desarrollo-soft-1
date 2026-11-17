@@ -1,0 +1,14 @@
+TEMA 5 
+
+
+a-) En un depósito de zapatillas, se esta haciendo un relevamiento de productos. 
+Como en el depósito toda la mercadería está desorganizada, se desea organizar 
+en el archivo “PRODUCTOS” la siguiente información: Código de producto ( entero) 
+Marca (30 caracteres) Cantidad de pares en existencia (entero) 
+UN SOLO REGISTRO POR CÓDIGO DE PRODUCTO  
+Esta información termina con código de producto igual a cero.  
+
+b-) Una vez obtenido el archivo, en aquellos productos cuya cantidad de pares en 
+existencia es menor a 10, reemplazar el campo marca por “Producto Discontinuo”  
+
+c-) Mostrar secuencialmente el archivo 
